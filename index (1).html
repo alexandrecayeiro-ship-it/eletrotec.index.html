@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Eletrotec Maringá | Orçamento</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #fff;
+      background: url('istockphoto-1445163529-612x612.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .overlay {
+      background: rgba(0,0,0,0.75);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header img {
+      max-width: 220px;
+      margin-bottom: 15px;
+    }
+    h1 {
+      color: #d4af37;
+    }
+    form, .confirmacao {
+      max-width: 520px;
+      margin: 0 auto;
+      background: rgba(0,0,0,0.85);
+      padding: 25px;
+      border-radius: 10px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: none;
+    }
+    button, .whatsapp {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background: #d4af37;
+      color: #000;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+    }
+    .whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+<div class="overlay">
+  <header>
+    <img src="logo.png" alt="Eletrotec Maringá">
+    <h1>Solicite seu Orçamento</h1>
+    <p>Atendemos Maringá e Região</p>
+  </header>
+
+  <form id="formOrcamento">
+    <label>Nome</label>
+    <input type="text" id="nome" required>
+
+    <label>Cidade</label>
+    <input type="text" id="cidade" required>
+
+    <label>Endereço</label>
+    <input type="text" id="endereco" required>
+
+    <label>Telefone</label>
+    <input type="tel" id="telefone" required>
+
+    <label>Tipo de Serviço</label>
+    <select id="servico" required>
+      <option value="">Selecione</option>
+      <option>Instalação Elétrica</option>
+      <option>Manutenção Residencial</option>
+      <option>Portão Eletrônico</option>
+      <option>Cerca Elétrica</option>
+      <option>Câmeras de Segurança</option>
+      <option>Atendimento Emergencial</option>
+    </select>
+
+    <button type="submit">Enviar Orçamento</button>
+  </form>
+
+  <div class="confirmacao" id="confirmacao" style="display:none;">
+    <h2 style="color:#d4af37;">Orçamento Enviado</h2>
+    <p><strong>Nome:</strong> <span id="cNome"></span></p>
+    <p><strong>Cidade:</strong> <span id="cCidade"></span></p>
+    <p><strong>Endereço:</strong> <span id="cEndereco"></span></p>
+    <p><strong>Telefone:</strong> <span id="cTelefone"></span></p>
+    <p><strong>Serviço:</strong> <span id="cServico"></span></p>
+    <p>Em breve entraremos em contato para confirmar o orçamento.</p>
+
+    <a id="linkWhats" class="whatsapp" target="_blank">
+      Falar no WhatsApp
+    </a>
+  </div>
+
+  <footer>
+    © 2026 Eletrotec Maringá – Soluções em Elétrica
+  </footer>
+</div>
+
+<script>
+document.getElementById("formOrcamento").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const nome = document.getElementById("nome").value;
+  const cidade = document.getElementById("cidade").value;
+  const endereco = document.getElementById("endereco").value;
+  const telefone = document.getElementById("telefone").value;
+  const servico = document.getElementById("servico").value;
+
+  document.getElementById("cNome").innerText = nome;
+  document.getElementById("cCidade").innerText = cidade;
+  document.getElementById("cEndereco").innerText = endereco;
+  document.getElementById("cTelefone").innerText = telefone;
+  document.getElementById("cServico").innerText = servico;
+
+  const mensagem = `Olá, gostaria de agendar um orçamento.%0A%0A` +
+    `Nome: ${nome}%0A` +
+    `Cidade: ${cidade}%0A` +
+    `Endereço: ${endereco}%0A` +
+    `Telefone: ${telefone}%0A` +
+    `Serviço: ${servico}`;
+
+  document.getElementById("linkWhats").href =
+    "https://wa.me/5544998610566?text=" + mensagem;
+
+  document.getElementById("formOrcamento").style.display = "none";
+  document.getElementById("confirmacao").style.display = "block";
+});
+</script>
+</body>
+</html>
